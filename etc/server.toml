@@ -1,0 +1,9 @@
+[Server]
+ListenAddr = "0.0.0.0:8080"
+MaxRetryCount = 3
+[DB]
+IP = "175.24.50.211"
+Port = 3306
+User = "rbcustom"
+Password = "rbcustom123456"
+DBName = "rb_custom"
