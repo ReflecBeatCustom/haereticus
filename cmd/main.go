@@ -5,8 +5,9 @@ import (
 	"os"
 
 	"github.com/golang/glog"
-	"github.com/haereticus/cmd/server"
-	ver "github.com/haereticus/pkg/version"
+
+	"github.com/ReflecBeatCustom/haereticus/cmd/server"
+	ver "github.com/ReflecBeatCustom/haereticus/pkg/version"
 )
 
 var (

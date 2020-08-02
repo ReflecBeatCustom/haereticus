@@ -1,4 +1,4 @@
-module github.com/haereticus
+module github.com/ReflecBeatCustom/haereticus
 
 go 1.14
 

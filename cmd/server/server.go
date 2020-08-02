@@ -17,8 +17,8 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/golang/glog"
 
-	"github.com/haereticus/pkg/config"
-	"github.com/haereticus/pkg/types"
+	"github.com/ReflecBeatCustom/haereticus/pkg/config"
+	"github.com/ReflecBeatCustom/haereticus/pkg/types"
 )
 
 const (

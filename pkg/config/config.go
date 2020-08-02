@@ -4,7 +4,7 @@ import (
 	"github.com/golang/glog"
 	toml "github.com/pelletier/go-toml"
 
-	"github.com/haereticus/pkg/types"
+	"github.com/ReflecBeatCustom/haereticus/pkg/types"
 )
 
 // NewServerConfig ...
