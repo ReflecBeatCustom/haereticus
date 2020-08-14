@@ -6,7 +6,7 @@ import (
 
 	"github.com/golang/glog"
 
-	"github.com/ReflecBeatCustom/haereticus/cmd/server"
+	"github.com/ReflecBeatCustom/haereticus/pkg/server"
 	ver "github.com/ReflecBeatCustom/haereticus/pkg/version"
 )
 

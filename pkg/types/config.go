@@ -7,6 +7,7 @@ type ServerConfig struct {
 		MaxRetryCount int
 	}
 	DB struct {
+		DBAddr   string
 		IP       string
 		Port     int
 		User     string

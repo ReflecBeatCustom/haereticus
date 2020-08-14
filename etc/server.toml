@@ -1,9 +1,10 @@
 [Server]
-ListenAddr = ""
-MaxRetryCount = 0
+ListenAddr = "0.0.0.0:8080"
+MaxRetryCount = 3
 [DB]
-IP = ""
-Port = 0
-User = ""
-Password = ""
-DBName = ""
+DBAddr = "rbcustom:rbcustom123456@(175.24.50.211:3306)"
+IP = "175.24.50.211"
+Port = 3306
+User = "rbcustom"
+Password = "rbcustom123456"
+DBName = "rb_custom"

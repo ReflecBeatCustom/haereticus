@@ -2,26 +2,29 @@ package server
 
 import (
 	"context"
-	"database/sql"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"sync/atomic"
 	"time"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+
+	// import not used
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/golang/glog"
+	"github.com/jinzhu/gorm"
 
 	"github.com/ReflecBeatCustom/haereticus/pkg/config"
 	"github.com/ReflecBeatCustom/haereticus/pkg/types"
 )
 
 const (
+	// MethodGetFumens [...]
 	MethodGetFumens = "GetFumens"
 )
 
@@ -30,7 +33,7 @@ type HaereticusServer struct {
 	httpServer *http.Server
 	healthy    int32
 	config     *types.ServerConfig
-	dbClient   *sql.DB
+	dbClient   *gorm.DB
 }
 
 // NewServer ...
@@ -44,7 +47,7 @@ func NewServer(configFile string) *HaereticusServer {
 		router.Use(middleware.Recoverer)
 		router.Mount("/debug", middleware.Profiler())
 		router.Get("/api/healthz", server.Healthz)
-		router.Get("/api", server.Root)
+		router.Post("/api", server.Root)
 	})
 
 	config, err := config.NewServerConfig(configFile)
@@ -60,23 +63,18 @@ func NewServer(configFile string) *HaereticusServer {
 		IdleTimeout:  15 * time.Second,
 	}
 
-	dbClient, err := sql.Open("mysql",
-		fmt.Sprintf("%s:%s@tcp(%s:%d)/%s",
-			config.DB.User,
-			config.DB.Password,
-			config.DB.IP,
-			config.DB.Port,
-			config.DB.DBName))
+	dbClient, err := gorm.Open("mysql", filepath.Join(config.DB.DBAddr, config.DB.DBName)+"?charset=utf8mb4&parseTime=True&loc=Asia%2fShanghai")
+	dbClient.DB().SetConnMaxLifetime(500)
 	if err != nil {
 		glog.Errorf("Open mysql DB error: %v", err)
 		return nil
 	}
-	dbClient.SetConnMaxLifetime(500)
-	err = dbClient.Ping()
+	err = dbClient.DB().Ping()
 	if err != nil {
 		glog.Errorf("Connect to mysql DB error: %v", err)
 		return nil
 	}
+	dbClient.SingularTable(true)
 
 	server.httpServer = httpServer
 	server.config = config

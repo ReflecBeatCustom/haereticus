@@ -2,7 +2,7 @@ package types
 
 // Header ...
 type Header struct {
-	ID      int    `json:"id"`
+	ID      string `json:"id"`
 	Jsonrpc string `json:"jsonrpc"`
 	Method  string `json:"method"`
 }

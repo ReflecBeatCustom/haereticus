@@ -1,0 +1,12 @@
+{
+    "id":"1234", 
+    "jsonrpc":"2.0", 
+    "method":"GetFumens", 
+    "params":
+    {
+        "Creator": "5",
+        "category": 0,
+        "start": 0,
+        "page": 2
+    }
+}
