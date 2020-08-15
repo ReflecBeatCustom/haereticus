@@ -1,0 +1,12 @@
+{
+    "id":"1234", 
+    "jsonrpc":"2.0", 
+    "method":"GetPacks", 
+    "params":
+    {
+        "key_word": "1",
+        "category": 0,
+        "start": 0,
+        "page": 2
+    }
+}

@@ -26,6 +26,8 @@ import (
 const (
 	// MethodGetFumens [...]
 	MethodGetFumens = "GetFumens"
+	// MethodGetPacks [...]
+	MethodGetPacks = "GetPacks"
 )
 
 // HaereticusServer ...
@@ -149,6 +151,8 @@ func (server *HaereticusServer) Root(writer http.ResponseWriter, request *http.R
 	switch header.Method {
 	case MethodGetFumens:
 		server.GetFumens(writer, body)
+	case MethodGetPacks:
+		server.GetPacks(writer, body)
 	}
 
 	return
